@@ -337,6 +337,152 @@
     .about-image-card:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(clamp(160px, 23vw, 320px)); }
     .about-image-card:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(clamp(160px, 23vw, 320px)); }
 
+    /* ================= MY BACKGROUND ================= */
+    .background {
+      min-height: 100vh;
+      padding: clamp(60px, 10vh, 120px) 5%;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .background-container {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .background-title {
+      font-size: clamp(36px, 6vw, 56px);
+      letter-spacing: 3px;
+      margin-bottom: clamp(15px, 2vh, 20px);
+      text-align: center;
+    }
+
+    .background-line {
+      width: clamp(100px, 18vw, 140px);
+      height: 2px;
+      background: #7c3aed;
+      margin: 0 auto clamp(50px, 6vh, 80px);
+    }
+
+    .background-content {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(50px, 6vh, 80px);
+    }
+
+    .education-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 5vw, 60px);
+      align-items: start;
+    }
+
+    .background-section {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(20px, 3vh, 30px);
+    }
+
+    .work-experience-section {
+      width: 100%;
+    }
+
+    .background-section h3 {
+      font-size: clamp(20px, 3vw, 28px);
+      color: #7c3aed;
+      margin-bottom: clamp(10px, 2vh, 15px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .background-section h3::before {
+      content: '↪';
+      font-size: clamp(24px, 3.5vw, 32px);
+    }
+
+    .education-item,
+    .experience-item {
+      background: #1a1a1a;
+      border-left: 3px solid #7c3aed;
+      padding: clamp(20px, 3vw, 25px);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .education-item:hover,
+    .experience-item:hover {
+      transform: translateX(10px);
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+    }
+
+    .education-item h4,
+    .experience-item h4 {
+      font-size: clamp(16px, 2vw, 18px);
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .education-item p,
+    .experience-item p {
+      font-size: clamp(12px, 1.5vw, 14px);
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    /* ================= 3D EDUCATION CAROUSEL ================= */
+    .education-gallery {
+      width: 100%;
+      perspective: clamp(800px, 100vw, 1400px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .education-carousel-track {
+      position: relative;
+      width: 100%;
+      height: clamp(300px, 40vw, 500px);
+      transform-style: preserve-3d;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    .education-carousel-track:active {
+      cursor: grabbing;
+    }
+
+    .education-image-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: clamp(120px, 18vw, 240px);
+      height: clamp(180px, 27vw, 360px);
+      border-radius: clamp(12px, 2vw, 20px);
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+      transition: filter 0.4s ease;
+      filter: brightness(0.6);
+    }
+
+    .education-image-card:hover {
+      filter: brightness(0.8);
+    }
+
+    .education-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .education-image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(clamp(140px, 20vw, 280px)); }
+    .education-image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(120deg) translateZ(clamp(140px, 20vw, 280px)); }
+    .education-image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(240deg) translateZ(clamp(140px, 20vw, 280px)); }
+
     /* ================= RESPONSIVE SPECIFIC ================= */
     @media (max-width: 1024px) {
       .hero-wrapper {
@@ -365,6 +511,10 @@
       .page {
         position: static;
         margin-top: 30px;
+      }
+
+      .education-wrapper {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -410,6 +560,10 @@
       .about-carousel-track {
         height: clamp(300px, 45vw, 500px);
       }
+
+      .education-carousel-track {
+        height: clamp(280px, 45vw, 450px);
+      }
     }
 
     @media (max-width: 480px) {
@@ -431,6 +585,10 @@
 
       .about-carousel-track {
         height: clamp(280px, 50vw, 400px);
+      }
+
+      .education-carousel-track {
+        height: clamp(250px, 50vw, 400px);
       }
     }
 
@@ -461,6 +619,10 @@
       .about-image-card:hover {
         filter: brightness(0.6);
       }
+
+      .education-image-card:hover {
+        filter: brightness(0.6);
+      }
     }
   </style>
 </head>
@@ -471,6 +633,7 @@
   <nav>
     <a href="#home" class="active">Home</a>
     <a href="#about">About Me</a>
+    <a href="#background">My Background</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -496,14 +659,13 @@
       <div class="line"></div>
 
       <p>
-I’m 22 years old from Caloocan, and I’m currently a 4th-year IT student about to graduate. I have a solid foundation in both frontend and backend development, as well as some experience working with databases. In my free time, I enjoy playing games like Valorant, League of Legends, Crossfire, and Counter-Strike 2. My goal is to build a successful career in IT, make my parents proud, and continue learning and growing in the field of technology.      </p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
 
       <div class="actions">
         <button class="btn">Explore Now</button>
-        <div class="play"><span>▶</span> Play Video</div>
       </div>
 
-      <div class="page">Page | 01</div>
     </div>
   </div>
 </section>
@@ -531,6 +693,70 @@ I’m 22 years old from Caloocan, and I’m currently a 4th-year IT student abou
   </div>
 </section>
 
+<section id="background" class="background reveal-right">
+  <div class="background-container">
+    <h2 class="background-title">My Background</h2>
+    <div class="background-line"></div>
+    
+    <div class="background-content">
+      <!-- Education and Images Side by Side -->
+      <div class="education-wrapper">
+        <div class="background-section">
+          <h3>Education</h3>
+          
+          <div class="education-item">
+            <h4>Bachelor of Science in Information Technology</h4>
+            <p>University of the East - Caloocan</p>
+            <p>2021 - Present (4th Year)</p>
+          </div>
+          
+          <div class="education-item">
+            <h4>Senior High School - ICT Strand</h4>
+            <p>University of the East - Caloocan</p>
+            <p>2019 - 2021</p>
+          </div>
+          
+          <div class="education-item">
+            <h4>Junior High School</h4>
+            <p>Kalookan High School</p>
+            <p>2015 - 2019</p>
+          </div>
+        </div>
+
+        <!-- 3D Carousel for Education Images -->
+        <div class="education-gallery">
+          <div class="education-carousel-track">
+            <div class="education-image-card"><img src="images/khs.jpg" alt="Kalookan High School"></div>
+            <div class="education-image-card"><img src="images/srhigh.jpg" alt="Senior High School"></div>
+            <div class="education-image-card"><img src="images/uss.jpg" alt="University of the East"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work Experience Below -->
+      <div class="work-experience-section">
+        <div class="background-section">
+          <h3>Work Experience</h3>
+          
+          <div class="experience-item">
+            <h4>Freelance Web Developer</h4>
+            <p>Self-Employed</p>
+            <p>2023 - Present</p>
+            <p>Building custom websites and web applications for clients</p>
+          </div>
+          
+          <div class="experience-item">
+            <h4>IT Intern</h4>
+            <p>Various Companies</p>
+            <p>2022 - 2023</p>
+            <p>Gained hands-on experience in frontend, backend, and database management</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <script>
   /* SCROLL REVEAL */
   const reveals = document.querySelectorAll('.reveal-left, .reveal-right');
@@ -548,8 +774,11 @@ I’m 22 years old from Caloocan, and I’m currently a 4th-year IT student abou
   /* 3D CAROUSEL DRAG & TOUCH */
   const track = document.querySelector('.carousel-track');
   const aboutTrack = document.querySelector('.about-carousel-track');
+  const educationTrack = document.querySelector('.education-carousel-track');
+  
   let rotation = 0, speed = 0.05, isDragging = false, lastX = 0, velocity = 0;
   let aboutRotation = 0, aboutSpeed = 0.05, aboutDragging = false, aboutLastX = 0, aboutVelocity = 0;
+  let educationRotation = 0, educationSpeed = 0.05, educationDragging = false, educationLastX = 0, educationVelocity = 0;
 
   function animate() {
     rotation += speed + velocity;
@@ -559,6 +788,10 @@ I’m 22 years old from Caloocan, and I’m currently a 4th-year IT student abou
     aboutRotation += aboutSpeed + aboutVelocity;
     aboutVelocity *= 0.95;
     aboutTrack.style.transform = `rotateY(${aboutRotation}deg)`;
+    
+    educationRotation += educationSpeed + educationVelocity;
+    educationVelocity *= 0.95;
+    educationTrack.style.transform = `rotateY(${educationRotation}deg)`;
     
     requestAnimationFrame(animate);
   }
@@ -574,6 +807,7 @@ I’m 22 years old from Caloocan, and I’m currently a 4th-year IT student abou
   window.addEventListener('mouseup', () => {
     isDragging = false;
     aboutDragging = false;
+    educationDragging = false;
   });
 
   window.addEventListener('mousemove', e => {
@@ -587,6 +821,11 @@ I’m 22 years old from Caloocan, and I’m currently a 4th-year IT student abou
       aboutLastX = e.clientX;
       aboutVelocity = delta * 0.15;
     }
+    if(educationDragging) {
+      const delta = e.clientX - educationLastX;
+      educationLastX = e.clientX;
+      educationVelocity = delta * 0.15;
+    }
   });
 
   // Touch events for hero carousel
@@ -598,6 +837,7 @@ I’m 22 years old from Caloocan, and I’m currently a 4th-year IT student abou
   window.addEventListener('touchend', () => {
     isDragging = false;
     aboutDragging = false;
+    educationDragging = false;
   });
 
   window.addEventListener('touchmove', e => {
@@ -611,6 +851,11 @@ I’m 22 years old from Caloocan, and I’m currently a 4th-year IT student abou
       aboutLastX = e.touches[0].clientX;
       aboutVelocity = delta * 0.15;
     }
+    if(educationDragging) {
+      const delta = e.touches[0].clientX - educationLastX;
+      educationLastX = e.touches[0].clientX;
+      educationVelocity = delta * 0.15;
+    }
   });
 
   // Mouse events for about carousel
@@ -623,6 +868,18 @@ I’m 22 years old from Caloocan, and I’m currently a 4th-year IT student abou
   aboutTrack.addEventListener('touchstart', e => {
     aboutDragging = true;
     aboutLastX = e.touches[0].clientX;
+  });
+
+  // Mouse events for education carousel
+  educationTrack.addEventListener('mousedown', e => { 
+    educationDragging = true; 
+    educationLastX = e.clientX; 
+  });
+
+  // Touch events for education carousel
+  educationTrack.addEventListener('touchstart', e => {
+    educationDragging = true;
+    educationLastX = e.touches[0].clientX;
   });
 
   // Smooth scroll for navigation
