@@ -3,199 +3,639 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GameZone | Home</title>
+  <title>Portfolio | Alexis Sacro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background: #0f172a;
-      color: #ffffff;
+      font-family: 'Orbitron', Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      overflow-x: hidden;
     }
 
-    /* Navbar */
+    /* ================= NAVBAR ================= */
     header {
+      min-height: 70px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 20px 60px;
-      background: #020617;
+      justify-content: space-between;
+      padding: 20px 5%;
+      background: #1a1a1a;
+      border-bottom: 2px solid #7c3aed;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     header h1 {
-      color: #22c55e;
-      font-size: 28px;
+      font-size: clamp(14px, 2vw, 16px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      gap: clamp(15px, 3vw, 30px);
+      flex-wrap: wrap;
     }
 
     nav a {
-      margin-left: 25px;
       text-decoration: none;
-      color: #e5e7eb;
-      font-size: 16px;
+      color: #aaa;
+      font-size: clamp(11px, 1.5vw, 13px);
+      letter-spacing: 1px;
       transition: color 0.3s;
     }
 
+    nav a.active,
     nav a:hover {
-      color: #22c55e;
+      color: #fff;
     }
 
-    /* Hero Section */
+    /* ================= HERO ================= */
     .hero {
-      height: 90vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1605902711622-cfb43c44367f');
-      background-size: cover;
-      background-position: center;
-      padding: 20px;
+      padding: clamp(40px, 8vh, 80px) 5%;
+      gap: clamp(30px, 5vw, 60px);
     }
 
-    .hero h2 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      margin-bottom: 30px;
-      color: #d1d5db;
-    }
-
-    .hero button {
-      padding: 15px 35px;
-      font-size: 16px;
-      border: none;
-      background: #22c55e;
-      color: #020617;
-      cursor: pointer;
-      border-radius: 30px;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    .hero button:hover {
-      background: #16a34a;
-      transform: scale(1.05);
-    }
-
-    /* Games Section */
-    .games {
-      padding: 60px;
-      text-align: center;
-    }
-
-    .games h3 {
-      font-size: 32px;
-      margin-bottom: 40px;
-    }
-
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-
-    .game-card {
-      background: #020617;
-      border-radius: 15px;
-      padding: 20px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .game-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 30px rgba(34,197,94,0.3);
-    }
-
-    .game-card img {
+    .hero-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: clamp(40px, 6vw, 80px);
+      max-width: 1400px;
       width: 100%;
-      border-radius: 10px;
-      margin-bottom: 15px;
     }
 
-    .game-card h4 {
-      margin-bottom: 10px;
+    /* ================= CAROUSEL ================= */
+    .carousel {
+      flex: 1;
+      min-width: 280px;
+      max-width: 600px;
+      perspective: clamp(800px, 100vw, 1400px);
+      margin: 0 auto;
     }
 
-    .game-card p {
-      font-size: 14px;
-      color: #9ca3af;
+    .carousel-track {
+      position: relative;
+      width: 100%;
+      height: clamp(350px, 50vw, 600px);
+      transform-style: preserve-3d;
+      cursor: grab;
+      touch-action: none;
     }
 
-    /* Footer */
-    footer {
-      background: #020617;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: #9ca3af;
+    .carousel-track:active {
+      cursor: grabbing;
+    }
+
+    .image-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: clamp(140px, 20vw, 280px);
+      height: clamp(210px, 30vw, 420px);
+      border-radius: clamp(12px, 2vw, 20px);
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+      transition: filter 0.4s ease;
+      filter: brightness(0.6);
+    }
+
+    .image-card:hover {
+      filter: brightness(0.8);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(clamp(160px, 23vw, 320px)); }
+    .image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(72deg) translateZ(clamp(160px, 23vw, 320px)); }
+    .image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(144deg) translateZ(clamp(160px, 23vw, 320px)); }
+    .image-card:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(clamp(160px, 23vw, 320px)); }
+    .image-card:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(clamp(160px, 23vw, 320px)); }
+
+    /* ================= CONTENT ================= */
+    .hero-content {
+      flex: 1;
+      min-width: 280px;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-content h2 {
+      font-size: clamp(32px, 6vw, 72px);
+      line-height: 1.1;
+      margin-bottom: clamp(20px, 3vh, 30px);
+    }
+
+    .hero-content h2 span { 
+      display: block; 
+    }
+
+    .line {
+      width: clamp(80px, 15vw, 120px);
+      height: 2px;
+      background: #777;
+      margin: clamp(15px, 2vh, 20px) 0 clamp(20px, 3vh, 30px);
+    }
+
+    .hero-content p {
+      font-size: clamp(12px, 1.5vw, 14px);
+      line-height: 1.8;
+      color: #aaa;
+      margin-bottom: clamp(30px, 4vh, 40px);
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: clamp(20px, 3vw, 30px);
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: clamp(12px, 1.5vh, 14px) clamp(20px, 3vw, 28px);
+      border: 1px solid #fff;
+      background: transparent;
+      color: #fff;
+      font-size: clamp(11px, 1.2vw, 12px);
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Orbitron', Arial, sans-serif;
+    }
+
+    .btn:hover {
+      background: #fff;
+      color: #000;
+      transform: translateY(-2px);
+    }
+
+    .play {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: clamp(11px, 1.2vw, 12px);
+      color: #aaa;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .play:hover {
+      color: #fff;
+    }
+
+    .play span {
+      width: clamp(35px, 5vw, 40px);
+      height: clamp(35px, 5vw, 40px);
+      border: 1px solid #aaa;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .play:hover span {
+      border-color: #fff;
+      transform: scale(1.1);
+    }
+
+    .page {
+      position: absolute;
+      bottom: -40px;
+      right: 0;
+      font-size: clamp(10px, 1.2vw, 11px);
+      letter-spacing: 2px;
+      color: #777;
+    }
+
+    /* ================= SCROLL ANIMATION ================= */
+    .reveal-left,
+    .reveal-right {
+      opacity: 0;
+      transition: all 1s ease;
+    }
+
+    .reveal-left { transform: translateX(-80px); }
+    .reveal-right { transform: translateX(80px); }
+
+    .reveal-left.show,
+    .reveal-right.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ================= ABOUT ME ================= */
+    .about {
+      min-height: 100vh;
+      padding: clamp(60px, 10vh, 120px) 5%;
+      background: #0d0d0d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-container { 
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .about-title {
+      font-size: clamp(36px, 6vw, 56px);
+      letter-spacing: 3px;
+      margin-bottom: clamp(15px, 2vh, 20px);
+    }
+
+    .about-line {
+      width: clamp(100px, 18vw, 140px);
+      height: 2px;
+      background: #7c3aed;
+      margin-bottom: clamp(30px, 4vh, 40px);
+    }
+
+    .about-text {
+      font-size: clamp(13px, 1.5vw, 14px);
+      line-height: 2;
+      color: #aaa;
+      margin-bottom: clamp(20px, 3vh, 25px);
+    }
+
+    .about-gallery {
+      width: 100%;
+      max-width: 600px;
+      perspective: clamp(800px, 100vw, 1400px);
+      margin: clamp(40px, 5vh, 60px) auto 0;
+    }
+
+    .about-carousel-track {
+      position: relative;
+      width: 100%;
+      height: clamp(350px, 50vw, 600px);
+      transform-style: preserve-3d;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    .about-carousel-track:active {
+      cursor: grabbing;
+    }
+
+    .about-image-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: clamp(140px, 20vw, 280px);
+      height: clamp(210px, 30vw, 420px);
+      border-radius: clamp(12px, 2vw, 20px);
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+      transition: filter 0.4s ease;
+      filter: brightness(0.6);
+    }
+
+    .about-image-card:hover {
+      filter: brightness(0.8);
+    }
+
+    .about-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .about-image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(clamp(160px, 23vw, 320px)); }
+    .about-image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(72deg) translateZ(clamp(160px, 23vw, 320px)); }
+    .about-image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(144deg) translateZ(clamp(160px, 23vw, 320px)); }
+    .about-image-card:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(clamp(160px, 23vw, 320px)); }
+    .about-image-card:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(clamp(160px, 23vw, 320px)); }
+
+    /* ================= RESPONSIVE SPECIFIC ================= */
+    @media (max-width: 1024px) {
+      .hero-wrapper {
+        flex-direction: column-reverse;
+      }
+
+      .carousel,
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .hero-content {
+        text-align: center;
+        align-items: center;
+      }
+
+      .line {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .actions {
+        justify-content: center;
+      }
+
+      .page {
+        position: static;
+        margin-top: 30px;
+      }
     }
 
     @media (max-width: 768px) {
       header {
         flex-direction: column;
+        gap: 15px;
+        text-align: center;
       }
 
       nav {
-        margin-top: 15px;
+        justify-content: center;
       }
 
-      .hero h2 {
-        font-size: 36px;
+      .carousel-track {
+        height: clamp(300px, 45vw, 500px);
+      }
+
+      .actions {
+        width: 100%;
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 250px;
+      }
+
+      .play {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .about-container {
+        text-align: center;
+      }
+
+      .about-line {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .about-carousel-track {
+        height: clamp(300px, 45vw, 500px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 15px 5%;
+      }
+
+      .hero {
+        padding: 30px 5%;
+      }
+
+      .carousel-track {
+        height: clamp(280px, 50vw, 400px);
+      }
+
+      .hero-content h2 span:first-child {
+        font-size: clamp(20px, 5vw, 28px);
+      }
+
+      .about-carousel-track {
+        height: clamp(280px, 50vw, 400px);
+      }
+    }
+
+    /* ================= TOUCH IMPROVEMENTS ================= */
+    @media (hover: none) {
+      .btn:hover {
+        background: transparent;
+        color: #fff;
+      }
+
+      .btn:active {
+        background: #fff;
+        color: #000;
+      }
+
+      .play:hover {
+        color: #aaa;
+      }
+
+      .play:active {
+        color: #fff;
+      }
+
+      .image-card:hover {
+        filter: brightness(0.6);
+      }
+
+      .about-image-card:hover {
+        filter: brightness(0.6);
       }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>GameZoned</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Games</a>
-      <a href="#">News</a>
-      <a href="#">Community</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+<header>
+  <h1>Alexis Sacro</h1>
+  <nav>
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About Me</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-  <section class="hero">
-    <div>
-      <h2>Level Up Your Gaming Experience</h2>
-      <p>Discover the latest games, news, and competitive esports action.</p>
-      <button>Explore Games</button>
-    </div>
-  </section>
-
-  <section class="games">
-    <h3>Popular Games</h3>
-    <div class="game-grid">
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1580128637429-f1e0d1e23a10" alt="Game 1" />
-        <h4>Cyber Battle</h4>
-        <p>Fast-paced action in a futuristic world.</p>
-      </div>
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1606312619344-6c4c2f7f3c38" alt="Game 2" />
-        <h4>Fantasy Quest</h4>
-        <p>Explore magical lands and epic adventures.</p>
-      </div>
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1556438064-2d7646166914" alt="Game 3" />
-        <h4>Racing X</h4>
-        <p>High-speed racing with realistic graphics.</p>
+<section id="home" class="hero">
+  <div class="hero-wrapper">
+    <div class="carousel reveal-left">
+      <div class="carousel-track">
+        <div class="image-card"><img src="images/1p.jpg" alt="Portfolio 1"></div>
+        <div class="image-card"><img src="images/2p.jpg" alt="Portfolio 2"></div>
+        <div class="image-card"><img src="images/alexis.jpg" alt="Alexis Sacro"></div>
+        <div class="image-card"><img src="images/4p.jpg" alt="Portfolio 4"></div>
+        <div class="image-card"><img src="images/5p.jpg" alt="Portfolio 5"></div>
       </div>
     </div>
-  </section>
 
-  <footer>
-    © 2025 GameZone. All Rights Reserved.
-  </footer>
+    <div class="hero-content reveal-right">
+      <h2>
+        <span>Hello, I am</span>
+        <span>Alexis Sacro</span>
+      </h2>
+
+      <div class="line"></div>
+
+      <p>
+I’m 22 years old from Caloocan, and I’m currently a 4th-year IT student about to graduate. I have a solid foundation in both frontend and backend development, as well as some experience working with databases. In my free time, I enjoy playing games like Valorant, League of Legends, Crossfire, and Counter-Strike 2. My goal is to build a successful career in IT, make my parents proud, and continue learning and growing in the field of technology.      </p>
+
+      <div class="actions">
+        <button class="btn">Explore Now</button>
+        <div class="play"><span>▶</span> Play Video</div>
+      </div>
+
+      <div class="page">Page | 01</div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about reveal-left">
+  <div class="about-container">
+    <h2 class="about-title">Who is Alexis?</h2>
+    <div class="about-line"></div>
+    <p class="about-text">
+      I am Alexis Sacro, a passionate developer and tech enthusiast who loves building clean, modern, and interactive web experiences. I enjoy working with front-end technologies, experimenting with animations, and turning ideas into reality through code.
+    </p>
+    <p class="about-text">
+      I focus on writing simple yet powerful designs, combining creativity and logic to deliver engaging user interfaces. Always learning, always improving.
+    </p>
+    
+    <div class="about-gallery">
+      <div class="about-carousel-track">
+        <div class="about-image-card"><img src="images/old1.jpg" alt="Alexis Photo 1"></div>
+        <div class="about-image-card"><img src="images/old2.jpg" alt="Alexis Photo 2"></div>
+        <div class="about-image-card"><img src="images/old3.jpg" alt="Alexis Photo 3"></div>
+        <div class="about-image-card"><img src="images/old4.jpg" alt="Alexis Photo 4"></div>
+        <div class="about-image-card"><img src="images/old5.jpg" alt="Alexis Photo 5"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  /* SCROLL REVEAL */
+  const reveals = document.querySelectorAll('.reveal-left, .reveal-right');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('show');
+      } else {
+        entry.target.classList.remove('show');
+      }
+    });
+  }, { threshold: 0.2 });
+  reveals.forEach(el => observer.observe(el));
+
+  /* 3D CAROUSEL DRAG & TOUCH */
+  const track = document.querySelector('.carousel-track');
+  const aboutTrack = document.querySelector('.about-carousel-track');
+  let rotation = 0, speed = 0.05, isDragging = false, lastX = 0, velocity = 0;
+  let aboutRotation = 0, aboutSpeed = 0.05, aboutDragging = false, aboutLastX = 0, aboutVelocity = 0;
+
+  function animate() {
+    rotation += speed + velocity;
+    velocity *= 0.95;
+    track.style.transform = `rotateY(${rotation}deg)`;
+    
+    aboutRotation += aboutSpeed + aboutVelocity;
+    aboutVelocity *= 0.95;
+    aboutTrack.style.transform = `rotateY(${aboutRotation}deg)`;
+    
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  // Mouse events for hero carousel
+  track.addEventListener('mousedown', e => { 
+    isDragging = true; 
+    lastX = e.clientX; 
+  });
+
+  window.addEventListener('mouseup', () => {
+    isDragging = false;
+    aboutDragging = false;
+  });
+
+  window.addEventListener('mousemove', e => {
+    if(isDragging) {
+      const delta = e.clientX - lastX;
+      lastX = e.clientX;
+      velocity = delta * 0.15;
+    }
+    if(aboutDragging) {
+      const delta = e.clientX - aboutLastX;
+      aboutLastX = e.clientX;
+      aboutVelocity = delta * 0.15;
+    }
+  });
+
+  // Touch events for hero carousel
+  track.addEventListener('touchstart', e => {
+    isDragging = true;
+    lastX = e.touches[0].clientX;
+  });
+
+  window.addEventListener('touchend', () => {
+    isDragging = false;
+    aboutDragging = false;
+  });
+
+  window.addEventListener('touchmove', e => {
+    if(isDragging) {
+      const delta = e.touches[0].clientX - lastX;
+      lastX = e.touches[0].clientX;
+      velocity = delta * 0.15;
+    }
+    if(aboutDragging) {
+      const delta = e.touches[0].clientX - aboutLastX;
+      aboutLastX = e.touches[0].clientX;
+      aboutVelocity = delta * 0.15;
+    }
+  });
+
+  // Mouse events for about carousel
+  aboutTrack.addEventListener('mousedown', e => { 
+    aboutDragging = true; 
+    aboutLastX = e.clientX; 
+  });
+
+  // Touch events for about carousel
+  aboutTrack.addEventListener('touchstart', e => {
+    aboutDragging = true;
+    aboutLastX = e.touches[0].clientX;
+  });
+
+  // Smooth scroll for navigation
+  document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if(target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
