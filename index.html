@@ -15,6 +15,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -22,6 +23,8 @@
       background: #111;
       color: #fff;
       overflow-x: hidden;
+      position: relative;
+      width: 100%;
     }
 
     /* ================= NAVBAR ================= */
@@ -71,6 +74,7 @@
       justify-content: center;
       padding: clamp(40px, 8vh, 80px) 5%;
       gap: clamp(30px, 5vw, 60px);
+      overflow: hidden;
     }
 
     .hero-wrapper {
@@ -90,6 +94,8 @@
       max-width: 600px;
       perspective: clamp(800px, 100vw, 1400px);
       margin: 0 auto;
+      overflow: hidden;
+      position: relative;
     }
 
     .carousel-track {
@@ -259,6 +265,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
     .about-container { 
@@ -291,6 +298,8 @@
       max-width: 600px;
       perspective: clamp(800px, 100vw, 1400px);
       margin: clamp(40px, 5vh, 60px) auto 0;
+      overflow: hidden;
+      position: relative;
     }
 
     .about-carousel-track {
@@ -345,6 +354,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
     .background-container {
@@ -439,6 +449,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      position: relative;
     }
 
     .education-carousel-track {
@@ -529,9 +541,24 @@
         justify-content: center;
       }
 
-      .carousel-track {
-        height: clamp(300px, 45vw, 500px);
+      .carousel {
+        max-width: 85vw;
       }
+
+      .carousel-track {
+        height: clamp(350px, 50vw, 550px);
+      }
+      
+      .image-card {
+        width: clamp(140px, 22vw, 280px);
+        height: clamp(210px, 33vw, 420px);
+      }
+      
+      .image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(140px); }
+      .image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(72deg) translateZ(140px); }
+      .image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(144deg) translateZ(140px); }
+      .image-card:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(140px); }
+      .image-card:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(140px); }
 
       .actions {
         width: 100%;
@@ -556,14 +583,42 @@
         margin-left: auto;
         margin-right: auto;
       }
+      
+      .about-gallery {
+        max-width: 85vw;
+      }
 
       .about-carousel-track {
-        height: clamp(300px, 45vw, 500px);
+        height: clamp(350px, 50vw, 550px);
+      }
+      
+      .about-image-card {
+        width: clamp(140px, 22vw, 280px);
+        height: clamp(210px, 33vw, 420px);
+      }
+      
+      .about-image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(140px); }
+      .about-image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(72deg) translateZ(140px); }
+      .about-image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(144deg) translateZ(140px); }
+      .about-image-card:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(140px); }
+      .about-image-card:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(140px); }
+      
+      .education-gallery {
+        max-width: 85vw;
       }
 
       .education-carousel-track {
-        height: clamp(280px, 45vw, 450px);
+        height: clamp(320px, 50vw, 480px);
       }
+      
+      .education-image-card {
+        width: clamp(130px, 20vw, 250px);
+        height: clamp(195px, 30vw, 375px);
+      }
+      
+      .education-image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(130px); }
+      .education-image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(120deg) translateZ(130px); }
+      .education-image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(240deg) translateZ(130px); }
     }
 
     @media (max-width: 480px) {
@@ -574,22 +629,65 @@
       .hero {
         padding: 30px 5%;
       }
+      
+      .carousel {
+        max-width: 80vw;
+      }
 
       .carousel-track {
-        height: clamp(280px, 50vw, 400px);
+        height: clamp(300px, 50vw, 420px);
       }
+      
+      .image-card {
+        width: clamp(110px, 18vw, 220px);
+        height: clamp(165px, 27vw, 330px);
+      }
+      
+      .image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(110px); }
+      .image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(72deg) translateZ(110px); }
+      .image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(144deg) translateZ(110px); }
+      .image-card:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(110px); }
+      .image-card:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(110px); }
 
       .hero-content h2 span:first-child {
         font-size: clamp(20px, 5vw, 28px);
       }
+      
+      .about-gallery {
+        max-width: 80vw;
+      }
 
       .about-carousel-track {
-        height: clamp(280px, 50vw, 400px);
+        height: clamp(300px, 50vw, 420px);
+      }
+      
+      .about-image-card {
+        width: clamp(110px, 18vw, 220px);
+        height: clamp(165px, 27vw, 330px);
+      }
+      
+      .about-image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(110px); }
+      .about-image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(72deg) translateZ(110px); }
+      .about-image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(144deg) translateZ(110px); }
+      .about-image-card:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(110px); }
+      .about-image-card:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(110px); }
+      
+      .education-gallery {
+        max-width: 80vw;
       }
 
       .education-carousel-track {
-        height: clamp(250px, 50vw, 400px);
+        height: clamp(280px, 48vw, 380px);
       }
+      
+      .education-image-card {
+        width: clamp(105px, 17vw, 200px);
+        height: clamp(157px, 25.5vw, 300px);
+      }
+      
+      .education-image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(100px); }
+      .education-image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(120deg) translateZ(100px); }
+      .education-image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(240deg) translateZ(100px); }
     }
 
     /* ================= TOUCH IMPROVEMENTS ================= */
