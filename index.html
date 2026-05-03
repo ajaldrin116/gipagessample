@@ -4,725 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio | Alexis Sacro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
-
-    body {
-      font-family: 'Orbitron', Arial, sans-serif;
-      background: #111;
-      color: #fff;
-      overflow-x: hidden;
-      position: relative;
-      width: 100%;
-    }
-
-    /* ================= NAVBAR ================= */
-    header {
-      min-height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 5%;
-      background: #1a1a1a;
-      border-bottom: 2px solid #7c3aed;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    header h1 {
-      font-size: clamp(14px, 2vw, 16px);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    nav {
-      display: flex;
-      gap: clamp(15px, 3vw, 30px);
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #aaa;
-      font-size: clamp(11px, 1.5vw, 13px);
-      letter-spacing: 1px;
-      transition: color 0.3s;
-    }
-
-    nav a.active,
-    nav a:hover {
-      color: #fff;
-    }
-
-    /* ================= HERO ================= */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: clamp(40px, 8vh, 80px) 5%;
-      gap: clamp(30px, 5vw, 60px);
-      overflow: hidden;
-    }
-
-    .hero-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: clamp(40px, 6vw, 80px);
-      max-width: 1400px;
-      width: 100%;
-    }
-
-    /* ================= CAROUSEL ================= */
-    .carousel {
-      flex: 1;
-      min-width: 280px;
-      max-width: 600px;
-      perspective: clamp(800px, 100vw, 1400px);
-      margin: 0 auto;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .carousel-track {
-      position: relative;
-      width: 100%;
-      height: clamp(350px, 50vw, 600px);
-      transform-style: preserve-3d;
-      cursor: grab;
-      touch-action: none;
-    }
-
-    .carousel-track:active {
-      cursor: grabbing;
-    }
-
-    .image-card {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: clamp(140px, 20vw, 280px);
-      height: clamp(210px, 30vw, 420px);
-      border-radius: clamp(12px, 2vw, 20px);
-      overflow: hidden;
-      cursor: pointer;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-      transition: filter 0.4s ease;
-      filter: brightness(0.6);
-    }
-
-    .image-card:hover {
-      filter: brightness(0.8);
-    }
-
-    .image-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-    }
-
-    .image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(clamp(160px, 23vw, 320px)); }
-    .image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(72deg) translateZ(clamp(160px, 23vw, 320px)); }
-    .image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(144deg) translateZ(clamp(160px, 23vw, 320px)); }
-    .image-card:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(clamp(160px, 23vw, 320px)); }
-    .image-card:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(clamp(160px, 23vw, 320px)); }
-
-    /* ================= CONTENT ================= */
-    .hero-content {
-      flex: 1;
-      min-width: 280px;
-      max-width: 600px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-    }
-
-    .hero-content h2 {
-      font-size: clamp(32px, 6vw, 72px);
-      line-height: 1.1;
-      margin-bottom: clamp(20px, 3vh, 30px);
-    }
-
-    .hero-content h2 span { 
-      display: block; 
-    }
-
-    .line {
-      width: clamp(80px, 15vw, 120px);
-      height: 2px;
-      background: #777;
-      margin: clamp(15px, 2vh, 20px) 0 clamp(20px, 3vh, 30px);
-    }
-
-    .hero-content p {
-      font-size: clamp(12px, 1.5vw, 14px);
-      line-height: 1.8;
-      color: #aaa;
-      margin-bottom: clamp(30px, 4vh, 40px);
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: clamp(20px, 3vw, 30px);
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: clamp(12px, 1.5vh, 14px) clamp(20px, 3vw, 28px);
-      border: 1px solid #fff;
-      background: transparent;
-      color: #fff;
-      font-size: clamp(11px, 1.2vw, 12px);
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-family: 'Orbitron', Arial, sans-serif;
-    }
-
-    .btn:hover {
-      background: #fff;
-      color: #000;
-      transform: translateY(-2px);
-    }
-
-    .play {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: clamp(11px, 1.2vw, 12px);
-      color: #aaa;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-
-    .play:hover {
-      color: #fff;
-    }
-
-    .play span {
-      width: clamp(35px, 5vw, 40px);
-      height: clamp(35px, 5vw, 40px);
-      border: 1px solid #aaa;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s;
-    }
-
-    .play:hover span {
-      border-color: #fff;
-      transform: scale(1.1);
-    }
-
-    .page {
-      position: absolute;
-      bottom: -40px;
-      right: 0;
-      font-size: clamp(10px, 1.2vw, 11px);
-      letter-spacing: 2px;
-      color: #777;
-    }
-
-    /* ================= SCROLL ANIMATION ================= */
-    .reveal-left,
-    .reveal-right {
-      opacity: 0;
-      transition: all 1s ease;
-    }
-
-    .reveal-left { transform: translateX(-80px); }
-    .reveal-right { transform: translateX(80px); }
-
-    .reveal-left.show,
-    .reveal-right.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    /* ================= ABOUT ME ================= */
-    .about {
-      min-height: 100vh;
-      padding: clamp(60px, 10vh, 120px) 5%;
-      background: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .about-container { 
-      max-width: 900px;
-      width: 100%;
-    }
-
-    .about-title {
-      font-size: clamp(36px, 6vw, 56px);
-      letter-spacing: 3px;
-      margin-bottom: clamp(15px, 2vh, 20px);
-    }
-
-    .about-line {
-      width: clamp(100px, 18vw, 140px);
-      height: 2px;
-      background: #7c3aed;
-      margin-bottom: clamp(30px, 4vh, 40px);
-    }
-
-    .about-text {
-      font-size: clamp(13px, 1.5vw, 14px);
-      line-height: 2;
-      color: #aaa;
-      margin-bottom: clamp(20px, 3vh, 25px);
-    }
-
-    .about-gallery {
-      width: 100%;
-      max-width: 600px;
-      perspective: clamp(800px, 100vw, 1400px);
-      margin: clamp(40px, 5vh, 60px) auto 0;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .about-carousel-track {
-      position: relative;
-      width: 100%;
-      height: clamp(350px, 50vw, 600px);
-      transform-style: preserve-3d;
-      cursor: grab;
-      touch-action: none;
-    }
-
-    .about-carousel-track:active {
-      cursor: grabbing;
-    }
-
-    .about-image-card {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: clamp(140px, 20vw, 280px);
-      height: clamp(210px, 30vw, 420px);
-      border-radius: clamp(12px, 2vw, 20px);
-      overflow: hidden;
-      cursor: pointer;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-      transition: filter 0.4s ease;
-      filter: brightness(0.6);
-    }
-
-    .about-image-card:hover {
-      filter: brightness(0.8);
-    }
-
-    .about-image-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-    }
-
-    .about-image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(clamp(160px, 23vw, 320px)); }
-    .about-image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(72deg) translateZ(clamp(160px, 23vw, 320px)); }
-    .about-image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(144deg) translateZ(clamp(160px, 23vw, 320px)); }
-    .about-image-card:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(clamp(160px, 23vw, 320px)); }
-    .about-image-card:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(clamp(160px, 23vw, 320px)); }
-
-    /* ================= MY BACKGROUND ================= */
-    .background {
-      min-height: 100vh;
-      padding: clamp(60px, 10vh, 120px) 5%;
-      background: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .background-container {
-      max-width: 1200px;
-      width: 100%;
-    }
-
-    .background-title {
-      font-size: clamp(36px, 6vw, 56px);
-      letter-spacing: 3px;
-      margin-bottom: clamp(15px, 2vh, 20px);
-      text-align: center;
-    }
-
-    .background-line {
-      width: clamp(100px, 18vw, 140px);
-      height: 2px;
-      background: #7c3aed;
-      margin: 0 auto clamp(50px, 6vh, 80px);
-    }
-
-    .background-content {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(50px, 6vh, 80px);
-    }
-
-    .education-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(40px, 5vw, 60px);
-      align-items: start;
-    }
-
-    .background-section {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(20px, 3vh, 30px);
-    }
-
-    .work-experience-section {
-      width: 100%;
-    }
-
-    .background-section h3 {
-      font-size: clamp(20px, 3vw, 28px);
-      color: #7c3aed;
-      margin-bottom: clamp(10px, 2vh, 15px);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .background-section h3::before {
-      content: '↪';
-      font-size: clamp(24px, 3.5vw, 32px);
-    }
-
-    .education-item,
-    .experience-item {
-      background: #1a1a1a;
-      border-left: 3px solid #7c3aed;
-      padding: clamp(20px, 3vw, 25px);
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .education-item:hover,
-    .experience-item:hover {
-      transform: translateX(10px);
-      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
-    }
-
-    .education-item h4,
-    .experience-item h4 {
-      font-size: clamp(16px, 2vw, 18px);
-      margin-bottom: 8px;
-      color: #fff;
-    }
-
-    .education-item p,
-    .experience-item p {
-      font-size: clamp(12px, 1.5vw, 14px);
-      color: #aaa;
-      line-height: 1.6;
-    }
-
-    /* ================= 3D EDUCATION CAROUSEL ================= */
-    .education-gallery {
-      width: 100%;
-      perspective: clamp(800px, 100vw, 1400px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .education-carousel-track {
-      position: relative;
-      width: 100%;
-      height: clamp(300px, 40vw, 500px);
-      transform-style: preserve-3d;
-      cursor: grab;
-      touch-action: none;
-    }
-
-    .education-carousel-track:active {
-      cursor: grabbing;
-    }
-
-    .education-image-card {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: clamp(120px, 18vw, 240px);
-      height: clamp(180px, 27vw, 360px);
-      border-radius: clamp(12px, 2vw, 20px);
-      overflow: hidden;
-      cursor: pointer;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-      transition: filter 0.4s ease;
-      filter: brightness(0.6);
-    }
-
-    .education-image-card:hover {
-      filter: brightness(0.8);
-    }
-
-    .education-image-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-    }
-
-    .education-image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(clamp(140px, 20vw, 280px)); }
-    .education-image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(120deg) translateZ(clamp(140px, 20vw, 280px)); }
-    .education-image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(240deg) translateZ(clamp(140px, 20vw, 280px)); }
-
-    /* ================= RESPONSIVE SPECIFIC ================= */
-    @media (max-width: 1024px) {
-      .hero-wrapper {
-        flex-direction: column-reverse;
-      }
-
-      .carousel,
-      .hero-content {
-        max-width: 100%;
-      }
-
-      .hero-content {
-        text-align: center;
-        align-items: center;
-      }
-
-      .line {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .actions {
-        justify-content: center;
-      }
-
-      .page {
-        position: static;
-        margin-top: 30px;
-      }
-
-      .education-wrapper {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-      }
-
-      nav {
-        justify-content: center;
-      }
-
-      .carousel {
-        max-width: 85vw;
-      }
-
-      .carousel-track {
-        height: clamp(350px, 50vw, 550px);
-      }
-      
-      .image-card {
-        width: clamp(140px, 22vw, 280px);
-        height: clamp(210px, 33vw, 420px);
-      }
-      
-      .image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(140px); }
-      .image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(72deg) translateZ(140px); }
-      .image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(144deg) translateZ(140px); }
-      .image-card:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(140px); }
-      .image-card:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(140px); }
-
-      .actions {
-        width: 100%;
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-        max-width: 250px;
-      }
-
-      .play {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .about-container {
-        text-align: center;
-      }
-
-      .about-line {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      
-      .about-gallery {
-        max-width: 85vw;
-      }
-
-      .about-carousel-track {
-        height: clamp(350px, 50vw, 550px);
-      }
-      
-      .about-image-card {
-        width: clamp(140px, 22vw, 280px);
-        height: clamp(210px, 33vw, 420px);
-      }
-      
-      .about-image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(140px); }
-      .about-image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(72deg) translateZ(140px); }
-      .about-image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(144deg) translateZ(140px); }
-      .about-image-card:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(140px); }
-      .about-image-card:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(140px); }
-      
-      .education-gallery {
-        max-width: 85vw;
-      }
-
-      .education-carousel-track {
-        height: clamp(320px, 50vw, 480px);
-      }
-      
-      .education-image-card {
-        width: clamp(130px, 20vw, 250px);
-        height: clamp(195px, 30vw, 375px);
-      }
-      
-      .education-image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(130px); }
-      .education-image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(120deg) translateZ(130px); }
-      .education-image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(240deg) translateZ(130px); }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        padding: 15px 5%;
-      }
-
-      .hero {
-        padding: 30px 5%;
-      }
-      
-      .carousel {
-        max-width: 80vw;
-      }
-
-      .carousel-track {
-        height: clamp(300px, 50vw, 420px);
-      }
-      
-      .image-card {
-        width: clamp(110px, 18vw, 220px);
-        height: clamp(165px, 27vw, 330px);
-      }
-      
-      .image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(110px); }
-      .image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(72deg) translateZ(110px); }
-      .image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(144deg) translateZ(110px); }
-      .image-card:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(110px); }
-      .image-card:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(110px); }
-
-      .hero-content h2 span:first-child {
-        font-size: clamp(20px, 5vw, 28px);
-      }
-      
-      .about-gallery {
-        max-width: 80vw;
-      }
-
-      .about-carousel-track {
-        height: clamp(300px, 50vw, 420px);
-      }
-      
-      .about-image-card {
-        width: clamp(110px, 18vw, 220px);
-        height: clamp(165px, 27vw, 330px);
-      }
-      
-      .about-image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(110px); }
-      .about-image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(72deg) translateZ(110px); }
-      .about-image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(144deg) translateZ(110px); }
-      .about-image-card:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(110px); }
-      .about-image-card:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(110px); }
-      
-      .education-gallery {
-        max-width: 80vw;
-      }
-
-      .education-carousel-track {
-        height: clamp(280px, 48vw, 380px);
-      }
-      
-      .education-image-card {
-        width: clamp(105px, 17vw, 200px);
-        height: clamp(157px, 25.5vw, 300px);
-      }
-      
-      .education-image-card:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(100px); }
-      .education-image-card:nth-child(2) { transform: translate(-50%, -50%) rotateY(120deg) translateZ(100px); }
-      .education-image-card:nth-child(3) { transform: translate(-50%, -50%) rotateY(240deg) translateZ(100px); }
-    }
-
-    /* ================= TOUCH IMPROVEMENTS ================= */
-    @media (hover: none) {
-      .btn:hover {
-        background: transparent;
-        color: #fff;
-      }
-
-      .btn:active {
-        background: #fff;
-        color: #000;
-      }
-
-      .play:hover {
-        color: #aaa;
-      }
-
-      .play:active {
-        color: #fff;
-      }
-
-      .image-card:hover {
-        filter: brightness(0.6);
-      }
-
-      .about-image-card:hover {
-        filter: brightness(0.6);
-      }
-
-      .education-image-card:hover {
-        filter: brightness(0.6);
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -732,19 +15,21 @@
     <a href="#home" class="active">Home</a>
     <a href="#about">About Me</a>
     <a href="#background">My Background</a>
-    <a href="#contact">Contact</a>
+    <a href="#skills">Skills</a>
   </nav>
 </header>
 
+<!-- ================= HERO ================= -->
 <section id="home" class="hero">
   <div class="hero-wrapper">
+
     <div class="carousel reveal-left">
       <div class="carousel-track">
         <div class="image-card"><img src="images/1p.jpg" alt="Portfolio 1"></div>
         <div class="image-card"><img src="images/2p.jpg" alt="Portfolio 2"></div>
         <div class="image-card"><img src="images/alexis.jpg" alt="Alexis Sacro"></div>
-        <div class="image-card"><img src="images/4p.jpg" alt="Portfolio 4"></div>
-        <div class="image-card"><img src="images/5p.jpg" alt="Portfolio 5"></div>
+        <div class="image-card"><img src="images/grad4.jpg" alt="Portfolio 4"></div>
+        <div class="image-card"><img src="images/grad3.jpg" alt="Portfolio 5"></div>
       </div>
     </div>
 
@@ -753,33 +38,32 @@
         <span>Hello, I am</span>
         <span>Alexis Sacro</span>
       </h2>
-
       <div class="line"></div>
-
-      <p>
-I believe in continuous learning and embracing challenges, turning every line of code into an opportunity to grow and make a difference.
+      <p>I believe in continuous learning and embracing challenges, turning every line of code into an opportunity to grow and make a difference.</p>
       <div class="actions">
         <button class="btn">Explore Now</button>
       </div>
-
     </div>
+
   </div>
 </section>
 
+<!-- ================= ABOUT ME ================= -->
 <section id="about" class="about reveal-left">
   <div class="about-container">
     <h2 class="about-title">Who is Alexis?</h2>
     <div class="about-line"></div>
     <p class="about-text">
-      I am Alexis Sacro, a passionate developer and tech enthusiast who loves building clean, modern, and interactive web experiences. I enjoy working with front-end technologies, experimenting with animations, and turning ideas into reality through code.
+      I am Alexis O. Sacro, a results-driven Information Technology graduate from the University of Caloocan City. I hold a TESDA CSS NC II certification and have hands-on experience in PC assembly, disassembly, and hardware troubleshooting.
     </p>
     <p class="about-text">
-      I focus on writing simple yet powerful designs, combining creativity and logic to deliver engaging user interfaces. Always learning, always improving.
+      I am adept at diagnosing technical issues, installing and configuring operating systems, and providing responsive client support. I am eager to apply my technical knowledge and strong communication skills in a Tech Support role.
     </p>
-      <p class="about-text">
-I’m 22 years old from Caloocan, and I’m currently a 4th-year IT student about to graduate. I have a solid foundation in both frontend and backend development, as well as some experience working with databases. In my free time, I enjoy playing games like Valorant, League of Legends, Crossfire, and Counter-Strike 2. My goal is to build a successful career in IT, make my parents proud, and continue learning and growing in the field of technology.</p>
-    
-    <div class="about-gallery">
+    <p class="about-text">
+      I served as one of the <strong>Backend Developers</strong> and a <strong>Researcher</strong> in our capstone project <strong>X-STREAM</strong>, where I contributed to building the system's core functionality and conducting research to support the project's development.
+    </p>
+
+    <!-- <div class="about-gallery">
       <div class="about-carousel-track">
         <div class="about-image-card"><img src="images/old1.jpg" alt="Alexis Photo 1"></div>
         <div class="about-image-card"><img src="images/old2.jpg" alt="Alexis Photo 2"></div>
@@ -787,33 +71,35 @@ I’m 22 years old from Caloocan, and I’m currently a 4th-year IT student abou
         <div class="about-image-card"><img src="images/old4.jpg" alt="Alexis Photo 4"></div>
         <div class="about-image-card"><img src="images/old5.jpg" alt="Alexis Photo 5"></div>
       </div>
-    </div>
+    </div> -->
   </div>
 </section>
 
+<!-- ================= MY BACKGROUND ================= -->
 <section id="background" class="background reveal-right">
   <div class="background-container">
     <h2 class="background-title">My Background</h2>
     <div class="background-line"></div>
-    
+
     <div class="background-content">
-      <!-- Education and Images Side by Side -->
+
+      <!-- Education & Images -->
       <div class="education-wrapper">
         <div class="background-section">
           <h3>Education</h3>
-          
+
           <div class="education-item">
             <h4>Bachelor of Science in Information Technology</h4>
             <p>University of Caloocan City - Caloocan</p>
             <p>2025 - Present (4th Year)</p>
           </div>
-          
+
           <div class="education-item">
             <h4>Senior High School - ICT Strand</h4>
             <p>Arellano University - Malabon</p>
             <p>2019 - 2021</p>
           </div>
-          
+
           <div class="education-item">
             <h4>Junior High School</h4>
             <p>Kasarinlan High School</p>
@@ -821,173 +107,127 @@ I’m 22 years old from Caloocan, and I’m currently a 4th-year IT student abou
           </div>
         </div>
 
-        <!-- 3D Carousel for Education Images -->
         <div class="education-gallery">
           <div class="education-carousel-track">
             <div class="education-image-card"><img src="images/khs.jpg" alt="Kalookan High School"></div>
             <div class="education-image-card"><img src="images/srhigh.jpg" alt="Senior High School"></div>
-            <div class="education-image-card"><img src="images/uss.jpg" alt="University of the East"></div>
+            <div class="education-image-card"><img src="images/uss.jpg" alt="University"></div>
           </div>
         </div>
       </div>
 
-      <!-- Work Experience Below -->
-      <div class="work-experience-section">
+      <!-- Technical Skills & Certifications -->
+      <div id="skills" class="skills-certs-wrapper">
+
+        <!-- Technical Skills -->
         <div class="background-section">
-          <h3>Work Experience</h3>
-          
-          <div class="experience-item">
-            <h4>Freelance Web Developer</h4>
-            <p>Self-Employed</p>
-            <p>2023 - Present</p>
-            <p>Building custom websites and web applications for clients</p>
+          <h3>Technical Skills</h3>
+
+          <div class="skills-group">
+            <h4 class="skills-group-title">Hardware & Technical Support</h4>
+            <div class="skills-list">
+              <span class="skill-tag">PC Assembly & Disassembly</span>
+              <span class="skill-tag">Hardware Troubleshooting</span>
+              <span class="skill-tag">Hardware Diagnostics</span>
+              <span class="skill-tag">Basic Network Setup</span>
+              <span class="skill-tag">LAN Configuration</span>
+              <span class="skill-tag">OS Installation & Config</span>
+            </div>
           </div>
-          
-          <div class="experience-item">
-            <h4>IT Intern</h4>
-            <p>Various Companies</p>
-            <p>2022 - 2023</p>
-            <p>Gained hands-on experience in frontend, backend, and database management</p>
+
+          <div class="skills-group">
+            <h4 class="skills-group-title">Professional & Soft Skills</h4>
+            <div class="skills-list">
+              <span class="skill-tag">Effective Communication</span>
+              <span class="skill-tag">Public Speaking</span>
+              <span class="skill-tag">Multitasking</span>
+              <span class="skill-tag">Problem Solving</span>
+              <span class="skill-tag">Fast Learner</span>
+              <span class="skill-tag">Highly Adaptable</span>
+            </div>
           </div>
         </div>
+
+        <!-- Certifications -->
+        <div class="background-section">
+          <h3>Certifications</h3>
+
+          <div class="experience-item">
+            <h4>Computer Systems Servicing NC II</h4>
+            <p>Technical Education and Skills Development Authority (TESDA)</p>
+          </div>
+
+          <div class="experience-item">
+            <h4>Programming (Java) NC III</h4>
+            <p>Technical Education and Skills Development Authority (TESDA)</p>
+          </div>
+
+          <div class="experience-item">
+            <h4>Cyber Threat Monitoring Level I</h4>
+            <p>Technical Education and Skills Development Authority (TESDA)</p>
+          </div>
+        </div>
+
       </div>
+
     </div>
   </div>
 </section>
 
 <script>
-  /* SCROLL REVEAL */
+  /* ================= SCROLL REVEAL ================= */
   const reveals = document.querySelectorAll('.reveal-left, .reveal-right');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        entry.target.classList.add('show');
-      } else {
-        entry.target.classList.remove('show');
-      }
+      entry.target.classList.toggle('show', entry.isIntersecting);
     });
   }, { threshold: 0.2 });
   reveals.forEach(el => observer.observe(el));
 
-  /* 3D CAROUSEL DRAG & TOUCH */
-  const track = document.querySelector('.carousel-track');
-  const aboutTrack = document.querySelector('.about-carousel-track');
-  const educationTrack = document.querySelector('.education-carousel-track');
-  
-  let rotation = 0, speed = 0.05, isDragging = false, lastX = 0, velocity = 0;
-  let aboutRotation = 0, aboutSpeed = 0.05, aboutDragging = false, aboutLastX = 0, aboutVelocity = 0;
-  let educationRotation = 0, educationSpeed = 0.05, educationDragging = false, educationLastX = 0, educationVelocity = 0;
+  /* ================= 3D CAROUSEL ================= */
+  function initCarousel(trackSelector, speed = 0.05) {
+    const track = document.querySelector(trackSelector);
+    if (!track) return;
 
-  function animate() {
-    rotation += speed + velocity;
-    velocity *= 0.95;
-    track.style.transform = `rotateY(${rotation}deg)`;
-    
-    aboutRotation += aboutSpeed + aboutVelocity;
-    aboutVelocity *= 0.95;
-    aboutTrack.style.transform = `rotateY(${aboutRotation}deg)`;
-    
-    educationRotation += educationSpeed + educationVelocity;
-    educationVelocity *= 0.95;
-    educationTrack.style.transform = `rotateY(${educationRotation}deg)`;
-    
-    requestAnimationFrame(animate);
+    let rotation = 0, velocity = 0, isDragging = false, lastX = 0;
+
+    function animate() {
+      rotation += speed + velocity;
+      velocity *= 0.95;
+      track.style.transform = `rotateY(${rotation}deg)`;
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    track.addEventListener('mousedown',  e => { isDragging = true; lastX = e.clientX; });
+    track.addEventListener('touchstart', e => { isDragging = true; lastX = e.touches[0].clientX; });
+
+    window.addEventListener('mouseup',  () => isDragging = false);
+    window.addEventListener('touchend', () => isDragging = false);
+
+    window.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      velocity = (e.clientX - lastX) * 0.15;
+      lastX = e.clientX;
+    });
+
+    window.addEventListener('touchmove', e => {
+      if (!isDragging) return;
+      velocity = (e.touches[0].clientX - lastX) * 0.15;
+      lastX = e.touches[0].clientX;
+    });
   }
 
-  animate();
+  initCarousel('.carousel-track');
+  initCarousel('.about-carousel-track');
+  initCarousel('.education-carousel-track');
 
-  // Mouse events for hero carousel
-  track.addEventListener('mousedown', e => { 
-    isDragging = true; 
-    lastX = e.clientX; 
-  });
-
-  window.addEventListener('mouseup', () => {
-    isDragging = false;
-    aboutDragging = false;
-    educationDragging = false;
-  });
-
-  window.addEventListener('mousemove', e => {
-    if(isDragging) {
-      const delta = e.clientX - lastX;
-      lastX = e.clientX;
-      velocity = delta * 0.15;
-    }
-    if(aboutDragging) {
-      const delta = e.clientX - aboutLastX;
-      aboutLastX = e.clientX;
-      aboutVelocity = delta * 0.15;
-    }
-    if(educationDragging) {
-      const delta = e.clientX - educationLastX;
-      educationLastX = e.clientX;
-      educationVelocity = delta * 0.15;
-    }
-  });
-
-  // Touch events for hero carousel
-  track.addEventListener('touchstart', e => {
-    isDragging = true;
-    lastX = e.touches[0].clientX;
-  });
-
-  window.addEventListener('touchend', () => {
-    isDragging = false;
-    aboutDragging = false;
-    educationDragging = false;
-  });
-
-  window.addEventListener('touchmove', e => {
-    if(isDragging) {
-      const delta = e.touches[0].clientX - lastX;
-      lastX = e.touches[0].clientX;
-      velocity = delta * 0.15;
-    }
-    if(aboutDragging) {
-      const delta = e.touches[0].clientX - aboutLastX;
-      aboutLastX = e.touches[0].clientX;
-      aboutVelocity = delta * 0.15;
-    }
-    if(educationDragging) {
-      const delta = e.touches[0].clientX - educationLastX;
-      educationLastX = e.touches[0].clientX;
-      educationVelocity = delta * 0.15;
-    }
-  });
-
-  // Mouse events for about carousel
-  aboutTrack.addEventListener('mousedown', e => { 
-    aboutDragging = true; 
-    aboutLastX = e.clientX; 
-  });
-
-  // Touch events for about carousel
-  aboutTrack.addEventListener('touchstart', e => {
-    aboutDragging = true;
-    aboutLastX = e.touches[0].clientX;
-  });
-
-  // Mouse events for education carousel
-  educationTrack.addEventListener('mousedown', e => { 
-    educationDragging = true; 
-    educationLastX = e.clientX; 
-  });
-
-  // Touch events for education carousel
-  educationTrack.addEventListener('touchstart', e => {
-    educationDragging = true;
-    educationLastX = e.touches[0].clientX;
-  });
-
-  // Smooth scroll for navigation
+  /* ================= SMOOTH SCROLL ================= */
   document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
-      if(target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
     });
   });
 </script>
